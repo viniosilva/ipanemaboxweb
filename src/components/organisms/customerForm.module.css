@@ -1,0 +1,11 @@
+@media screen and (min-width: 800px) {
+  form.form {
+    display: grid;
+    column-gap: 1.5rem;
+
+    /* actions */
+    & > div:last-child {
+      grid-column: 1/3;
+    }
+  }
+}

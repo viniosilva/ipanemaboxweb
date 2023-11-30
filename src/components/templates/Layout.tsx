@@ -3,9 +3,11 @@ import { faBars, faHouse, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./layout.module.css";
 import { BaseSyntheticEvent, useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Routes from "../../Routes";
 
 interface Props {
-  title: string;
+  title?: string;
   children?: JSX.Element | JSX.Element[];
 }
 
@@ -14,9 +16,7 @@ export default function Layout({ title, children }: Props) {
   const year = new Date().getFullYear();
   const isMobile = innerWidth < 700;
   const menuCls = isMobile ? styles.hidden : "";
-  // const menuCls = isMobile
-  //   ? `${styles.mobileMenu} ${styles.hidden}`
-  //   : styles.menu;
+
   const bars = (
     <FontAwesomeIcon
       icon={faBars}
@@ -45,17 +45,22 @@ export default function Layout({ title, children }: Props) {
           {isMobile && bars}
           <ul>
             <li>
-              <FontAwesomeIcon icon={faHouse} />
-              Início
+              <Link to={Routes.home.path}>
+                <FontAwesomeIcon icon={faHouse} />
+                Início
+              </Link>
             </li>
-            <li><FontAwesomeIcon icon={faUsers} /> Clientes</li>
+            <li>
+              <Link to={Routes.customers.path}>
+                <FontAwesomeIcon icon={faUsers} />
+                Clientes
+              </Link>
+            </li>
           </ul>
         </nav>
         <header>{isMobile && bars}</header>
         <main>
-          <header>
-            <h1>{title}</h1>
-          </header>
+          <header>{title && <h1>{title}</h1>}</header>
           {children}
         </main>
         <footer>{year} © IpanemaBox</footer>

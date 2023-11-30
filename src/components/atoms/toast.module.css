@@ -1,0 +1,63 @@
+div.toastBox {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  top: 0;
+  right: 0;
+}
+
+div.toast {
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  transition: 0.5s;
+
+  & > div {
+    display: flex;
+    padding: 1rem;
+    background: var(--color-background);
+    width: 20rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    column-gap: 0.5rem;
+
+    & > span {
+      display: flex;
+      column-gap: 0.5rem;
+      align-items: center;
+
+      & .success {
+        width: 2rem;
+        font-size: 2rem;
+        color: #198754;
+      }
+    }
+
+    & > .close {
+      cursor: pointer;
+      width: 1.25rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  &.invisible {
+    visibility: hidden;
+    margin-top:-100px
+  }
+
+  &::after {
+    content: '';
+    background: #198754;
+    border-bottom-left-radius: 4px;
+    width: 0%;
+    transition: 5s;
+  }
+
+  &.ok::after {
+    content: '';
+    height: 0.5rem;
+    width: 100%; 
+  }
+}
+

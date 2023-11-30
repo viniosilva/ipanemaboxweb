@@ -1,0 +1,67 @@
+.button {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  color: var(--color-neutral);
+  border-radius: var(--border-radius);
+  background: #2d1967;
+  cursor: pointer;
+  transition: 0.25s;
+  line-height: 1.5;
+  width: max-content;
+
+  &:hover {
+    background: #423076;
+  }
+
+  &.primary {
+    background: #2d1967;
+
+    &:hover {
+      background: #423076;
+    }
+  }
+
+  &.secondary {
+    background: #6c757d;
+
+    &:hover {
+      background: #5c636a;
+    }
+  }
+
+  
+
+  &.success {
+    background: #198754;
+
+    &:hover {
+      background: #157347;
+    }
+  }
+
+  &.warning {
+    background: #ffc107;
+
+    &:hover {
+      background: #ffca2c;
+    }
+  }
+
+  &.danger {
+    background: #dc3545;
+
+    &:hover {
+      background: #bb2d3b;
+    }
+  }
+
+  &.info {
+    background: #0dcaf0;
+    
+    &:hover {
+      background: #31d2f2;
+    }
+  }
+}

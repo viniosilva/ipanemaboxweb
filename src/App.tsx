@@ -3,7 +3,7 @@ import Layout from "./components/templates/Layout";
 
 export default function App() {
   return (
-    <Layout title="Início">
+    <Layout>
       <SectionBox>
         <p>Olá mundo!</p>
       </SectionBox>
