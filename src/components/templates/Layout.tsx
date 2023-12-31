@@ -5,13 +5,15 @@ import styles from "./layout.module.css";
 import { BaseSyntheticEvent, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Routes from "../../Routes";
+import Breadcrumb, { Item as BreadcrumbItem } from "../molecules/Breadcrumb";
 
 interface Props {
   title?: string;
+  breadcrumbItems?: BreadcrumbItem[];
   children?: JSX.Element | JSX.Element[];
 }
 
-export default function Layout({ title, children }: Props) {
+export default function Layout({ title, breadcrumbItems, children }: Props) {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const year = new Date().getFullYear();
   const isMobile = innerWidth < 700;
@@ -60,7 +62,14 @@ export default function Layout({ title, children }: Props) {
         </nav>
         <header>{isMobile && bars}</header>
         <main>
-          <header>{title && <h1>{title}</h1>}</header>
+          <header>
+            {title && <h1>{title}</h1>}
+            {breadcrumbItems?.length && (
+              <Breadcrumb
+                items={breadcrumbItems}
+              />
+            )}
+          </header>
           {children}
         </main>
         <footer>{year} © IpanemaBox</footer>

@@ -21,7 +21,13 @@ export default function Customers() {
   return (
     <>
       <ToastBox toasts={toasts} />
-      <Layout title="Clientes">
+      <Layout
+        title="Clientes"
+        breadcrumbItems={[
+          { name: "Início", to: Routes.home.path },
+          { name: "Clientes" },
+        ]}
+      >
         <SectionBox classname={styles.customers}>
           <header>
             <Button category="primary" to={Routes.addCustomer.path}>

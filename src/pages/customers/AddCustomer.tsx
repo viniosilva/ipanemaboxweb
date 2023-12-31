@@ -10,12 +10,20 @@ import { createCustomer } from "../../integrations/customers";
 
 export default function AddCustomer() {
   const navigate = useNavigate();
+  const title = "Novo cliente";
   const [customer, setCustomer] = useState<Customer>({} as Customer);
 
   return (
-    <Layout title="Novo cliente">
+    <Layout
+      title={title}
+      breadcrumbItems={[
+        { name: "Início", to: Routes.home.path },
+        { name: "Clientes", to: Routes.customers.path },
+        { name: title },
+      ]}
+    >
       <SectionBox>
-      <CustomerForm
+        <CustomerForm
           customer={customer}
           setCustomer={setCustomer}
           onSubmit={formOnSubmit}

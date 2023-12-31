@@ -54,7 +54,7 @@ describe("pages", () => {
           </MemoryRouter>
         );
 
-        expect(screen.getByText("Cliente Testing")).toBeDefined();
+        expect(screen.getAllByText("Cliente Testing")).toHaveLength(2);
       });
 
       test("should render Carregando when customer is not found", () => {

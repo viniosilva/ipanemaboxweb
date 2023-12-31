@@ -1,0 +1,21 @@
+nav.breadcrumb {
+  margin-bottom: -1rem;
+  
+  & > ul {
+    display: flex;
+
+    & li {
+      display: flex;
+      column-gap: 0.5rem;
+
+      & > a {
+        color: var(--color-neutral)
+      }
+
+      &:not(:last-child)::after {
+        content: ">";
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

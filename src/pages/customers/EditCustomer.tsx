@@ -37,7 +37,14 @@ export default function EditCustomer() {
   }
 
   return (
-    <Layout title={title}>
+    <Layout
+      title={title}
+      breadcrumbItems={[
+        { name: "Início", to: Routes.home.path },
+        { name: "Clientes", to: Routes.customers.path },
+        { name: title },
+      ]}
+    >
       <SectionBox>
         <CustomerForm
           customer={customer}

@@ -36,7 +36,7 @@ describe("pages", () => {
           </MemoryRouter>
         );
 
-        expect(screen.getByText("Novo cliente")).toBeDefined();
+        expect(screen.getAllByText("Novo cliente")).toHaveLength(2);
       });
 
       test("should call formOnSubmit when click on Salvar", async () => {
