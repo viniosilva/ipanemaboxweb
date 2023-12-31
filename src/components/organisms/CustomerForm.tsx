@@ -1,3 +1,4 @@
+import Routes from "../../Routes";
 import Button from "../atoms/Button";
 import Form from "../atoms/Form";
 import InputBox from "../atoms/InputBox";
@@ -53,7 +54,7 @@ export default function CustomerForm({
           }}
         />
       </InputBox>
-      <FormActions>
+      <FormActions classname={styles.actions}>
         <Button type="submit" category="primary">
           Salvar
         </Button>
@@ -65,6 +66,15 @@ export default function CustomerForm({
         ) : (
           <></>
         )}
+
+        <Button
+          classname={styles.back}
+          type="button"
+          category="secondary"
+          to={Routes.customers.path}
+        >
+          Voltar
+        </Button>
       </FormActions>
     </Form>
   );

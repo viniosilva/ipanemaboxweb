@@ -1,8 +1,9 @@
 nav.breadcrumb {
-  margin-bottom: -1rem;
-  
   & > ul {
     display: flex;
+    margin:0;
+    padding-top: 0.5rem;
+    padding-left: 0.1rem;
 
     & li {
       display: flex;

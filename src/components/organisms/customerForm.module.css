@@ -1,10 +1,14 @@
+form.form > div.actions > a.back {
+  margin-left: auto;
+}
+
 @media screen and (min-width: 800px) {
   form.form {
     display: grid;
     column-gap: 1.5rem;
 
     /* actions */
-    & > div:last-child {
+    & > div.actions {
       grid-column: 1/3;
     }
   }
