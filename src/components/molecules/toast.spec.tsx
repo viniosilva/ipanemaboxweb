@@ -1,11 +1,11 @@
 import { describe, expect, test, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import Toast, { ToastBox, setToast, Props as ToastProps, getToast } from "./Toast";
 import styles from "./toast.module.css";
-import { act } from "react-dom/test-utils";
 
 describe("components", () => {
-  describe("atoms", () => {
+  describe("molecules", () => {
     describe("Toast", () => {
       test("should render for 6 seconds", async () => {
         vi.useFakeTimers();

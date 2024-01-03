@@ -6,6 +6,7 @@ import { BaseSyntheticEvent, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Routes from "../../Routes";
 import Breadcrumb, { Item as BreadcrumbItem } from "../molecules/Breadcrumb";
+import Curtain from "../atoms/Curtain";
 
 interface Props {
   title?: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function Layout({ title, breadcrumbItems, children }: Props) {
+  const [showCurtain, setShowCurtain] = useState(false);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const year = new Date().getFullYear();
   const isMobile = innerWidth < 700;
@@ -41,7 +43,7 @@ export default function Layout({ title, breadcrumbItems, children }: Props) {
 
   return (
     <>
-      {isMobile && <div className={`${styles.curtain} ${styles.hidden}`}></div>}
+      {isMobile && <Curtain hidden={!showCurtain} />}
       <div className={styles.layout}>
         <nav className={menuCls}>
           {isMobile && bars}
@@ -64,11 +66,7 @@ export default function Layout({ title, breadcrumbItems, children }: Props) {
         <main>
           <header>
             {title && <h1>{title}</h1>}
-            {breadcrumbItems?.length && (
-              <Breadcrumb
-                items={breadcrumbItems}
-              />
-            )}
+            {breadcrumbItems?.length && <Breadcrumb items={breadcrumbItems} />}
           </header>
           {children}
         </main>
@@ -80,16 +78,16 @@ export default function Layout({ title, breadcrumbItems, children }: Props) {
   function barsOnClick(e: BaseSyntheticEvent) {
     e.preventDefault();
 
-    const elements = document.querySelectorAll(
-      `div.${styles.layout} > nav, div.${styles.curtain}`
-    );
+    setShowCurtain(!showCurtain);
 
-    elements.forEach((e) => {
-      if (!e.classList.contains(styles.hidden)) {
-        e.classList.add(styles.hidden);
-      } else {
-        e.classList.remove(styles.hidden);
-      }
-    });
+    const element = document.querySelector(
+      `div.${styles.layout} > nav`
+    ) as HTMLElement;
+
+    if (!element.classList.contains(styles.hidden)) {
+      element.classList.add(styles.hidden);
+    } else {
+      element.classList.remove(styles.hidden);
+    }
   }
 }

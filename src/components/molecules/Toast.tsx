@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const TIMEOUT = 5000;
-const TIMEOUT_REMOVE = 1000;
+const TIMEOUT_CLOSE = 1000;
 
 type ToastType = "success" | "warning" | "danger" | "info";
 
@@ -17,7 +17,7 @@ export interface Props {
 export default function Toast({ type, message }: Props) {
   const [visible, setVisible] = useState(false);
   const [ok, setOk] = useState(false);
-  const [removed, setRemoved] = useState(false);
+  const [closed, setClosed] = useState(false);
   const cls = [styles.toast];
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function Toast({ type, message }: Props) {
     setTimeout(() => {
       setVisible(false);
       setTimeout(() => {
-        setRemoved(true);
-      }, TIMEOUT_REMOVE);
+        setClosed(true);
+      }, TIMEOUT_CLOSE);
     }, TIMEOUT);
 
     return () => {
@@ -37,7 +37,7 @@ export default function Toast({ type, message }: Props) {
     };
   }, []);
 
-  if (removed) {
+  if (closed) {
     return <></>;
   }
 
@@ -69,8 +69,8 @@ export default function Toast({ type, message }: Props) {
 
     setVisible(false);
     setTimeout(() => {
-      setRemoved(true);
-    }, TIMEOUT_REMOVE);
+      setClosed(true);
+    }, TIMEOUT_CLOSE);
   }
 }
 

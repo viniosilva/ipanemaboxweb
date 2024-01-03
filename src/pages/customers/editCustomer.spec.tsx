@@ -36,7 +36,7 @@ describe("pages", () => {
     getCustomerByIDMock.mockClear();
     updateCustomerMock.mockClear();
     deleteCustomerMock.mockClear();
-  })
+  });
 
   describe("customers", () => {
     describe("EditCustomer", () => {
@@ -54,7 +54,7 @@ describe("pages", () => {
           </MemoryRouter>
         );
 
-        expect(screen.getAllByText("Cliente Testing")).toHaveLength(2);
+        expect(screen.getByText("Cliente Testing")).toBeDefined();
       });
 
       test("should render Carregando when customer is not found", () => {
@@ -78,17 +78,13 @@ describe("pages", () => {
           email: "unit@test.com",
         } as Customer);
 
-        const { container } = render(
+        render(
           <MemoryRouter>
             <EditCustomer />
           </MemoryRouter>
         );
 
-        const submit = container.querySelector(
-          `section > form > div:last-child > input[type="submit"]`
-        ) as HTMLElement;
-
-        fireEvent.click(submit);
+        fireEvent.click(screen.getByText("Salvar"));
         await waitFor(() => {
           expect(updateCustomerMock).toHaveBeenCalledOnce();
           expect(navigateMock).toHaveBeenCalledOnce();
@@ -102,22 +98,20 @@ describe("pages", () => {
           name: "Testing",
           email: "unit@test.com",
         } as Customer);
-        vi.spyOn(window, "confirm").mockReturnValueOnce(true);
 
-        const { container } = render(
+        render(
           <MemoryRouter>
             <EditCustomer />
           </MemoryRouter>
         );
 
-        const button = container.querySelector(
-          `section > form > div:last-child > button`
-        ) as HTMLElement;
-
-        fireEvent.click(button);
-        await waitFor(() => {
-          expect(deleteCustomerMock).toHaveBeenCalledOnce();
-          expect(navigateMock).toHaveBeenCalledOnce();
+        fireEvent.click(screen.getByText("Remover"));
+        await waitFor(async () => {
+          fireEvent.click(screen.getByText("Sim"));
+          await waitFor(() => {
+            expect(deleteCustomerMock).toHaveBeenCalledOnce();
+            expect(navigateMock).toHaveBeenCalledOnce();
+          });
         });
       });
 
@@ -128,22 +122,21 @@ describe("pages", () => {
           name: "Testing",
           email: "unit@test.com",
         } as Customer);
-        vi.spyOn(window, "confirm").mockReturnValueOnce(false);
 
-        const { container } = render(
+        render(
           <MemoryRouter>
             <EditCustomer />
           </MemoryRouter>
         );
 
-        const button = container.querySelector(
-          `section > form > div:last-child > button`
-        ) as HTMLElement;
-
-        fireEvent.click(button);
-        await waitFor(() => {
-          expect(deleteCustomerMock).not.toHaveBeenCalledOnce();
-          expect(navigateMock).not.toHaveBeenCalledOnce();
+        fireEvent.click(screen.getByText("Remover"));
+        await waitFor(async () => {
+          fireEvent.click(screen.getByText("Não"));
+          
+          await waitFor(() => {
+            expect(deleteCustomerMock).not.toHaveBeenCalledOnce();
+            expect(navigateMock).not.toHaveBeenCalledOnce();
+          });
         });
       });
     });

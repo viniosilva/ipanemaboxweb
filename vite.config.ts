@@ -17,7 +17,7 @@ export default defineConfig({
         "src/vite-env.d.ts",
         "src/main.tsx",
         "src/integrations/**",
-      ],
+      ]
     },
   },
 });

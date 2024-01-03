@@ -7,10 +7,10 @@ import { MemoryRouter } from "react-router-dom";
 describe("components", () => {
   describe("templates", () => {
     describe("Layout", () => {
-      test("should render", () => {
+      test("should render with breadcrumbs", () => {
         const { container } = render(
           <MemoryRouter>
-            <Layout title="Title">
+            <Layout title="Title" breadcrumbItems={[{name:"Item 1"}]}>
               <p>Testing</p>
             </Layout>
           </MemoryRouter>
@@ -19,6 +19,7 @@ describe("components", () => {
         expect(container).toBeDefined();
         expect(screen.getByText("Title")).toBeDefined();
         expect(screen.getByText("Testing")).toBeDefined();
+        expect(screen.getByText("Item 1")).toBeDefined();
       });
 
       test("should show menu when click on bars", async () => {

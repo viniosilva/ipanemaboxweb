@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Routes from "../../Routes";
 import SectionBox from "../../components/atoms/SectionBox";
 import Layout from "../../components/templates/Layout";
-import { setToast } from "../../components/atoms/Toast";
+import { setToast } from "../../components/molecules/Toast";
 import CustomerForm from "../../components/organisms/CustomerForm";
 import Customer from "../../models/customer";
 import {
@@ -11,12 +11,14 @@ import {
   getCustomerByID,
   updateCustomer,
 } from "../../integrations/customers";
+import Confirm from "../../components/molecules/Confirm";
 
 export default function EditCustomer() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [customer, setCustomer] = useState<Customer>({} as Customer);
   const [title, setTitle] = useState("");
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     const c = getCustomerByID(Number(id));
@@ -37,23 +39,31 @@ export default function EditCustomer() {
   }
 
   return (
-    <Layout
-      title={title}
-      breadcrumbItems={[
-        { name: "Início", to: Routes.home.path },
-        { name: "Clientes", to: Routes.customers.path },
-        { name: title },
-      ]}
-    >
-      <SectionBox>
-        <CustomerForm
-          customer={customer}
-          setCustomer={setCustomer}
-          onSubmit={formOnSubmit}
-          deleteOnClick={deleteOnClick}
-        />
-      </SectionBox>
-    </Layout>
+    <>
+      <Confirm
+        text="Tem certeza que deseja remover o cliente?"
+        onConfirm={deleteOnConfirm}
+        onReject={deleteOnReject}
+        hidden={!showConfirm}
+      />
+      <Layout
+        title={title}
+        breadcrumbItems={[
+          { name: "Início", to: Routes.home.path },
+          { name: "Clientes", to: Routes.customers.path },
+          { name: "Editar" },
+        ]}
+      >
+        <SectionBox>
+          <CustomerForm
+            customer={customer}
+            setCustomer={setCustomer}
+            onSubmit={formOnSubmit}
+            deleteOnClick={deleteOnClick}
+          />
+        </SectionBox>
+      </Layout>
+    </>
   );
 
   function formOnSubmit(e: BaseSyntheticEvent) {
@@ -71,9 +81,11 @@ export default function EditCustomer() {
 
   function deleteOnClick(e: BaseSyntheticEvent) {
     e.preventDefault();
+    setShowConfirm(true);
+  }
 
-    const ok = confirm("Tem certeza que deseja remover o cliente?");
-    if (!ok) return;
+  function deleteOnConfirm(e: BaseSyntheticEvent) {
+    e.preventDefault();
 
     deleteCustomer(customer.id);
     setToast({
@@ -82,5 +94,10 @@ export default function EditCustomer() {
     });
 
     navigate(Routes.customers.path);
+  }
+
+  function deleteOnReject(e: BaseSyntheticEvent) {
+    e.preventDefault();
+    setShowConfirm(false);
   }
 }

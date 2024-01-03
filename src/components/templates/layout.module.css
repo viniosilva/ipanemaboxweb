@@ -1,6 +1,6 @@
 :root {
   --heigth-box: 4.5rem;
-  --menu-width: 10.5rem;
+  --menu-width: 164px;
 }
 
 div.curtain {
@@ -126,7 +126,7 @@ div.layout {
       align-items: center;
       row-gap: 1.5rem;
       padding: 3.5rem 2.5rem 0;
-      width: auto;
+      width: min-content;
     }
 
     & > ul {

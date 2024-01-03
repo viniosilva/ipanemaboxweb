@@ -1,13 +1,13 @@
+import { BaseSyntheticEvent, SetStateAction } from "react";
+import concatClassNames from "../../utils/concatClassNames";
 import Routes from "../../Routes";
 import Button from "../atoms/Button";
 import Form from "../atoms/Form";
 import InputBox from "../atoms/InputBox";
 import Input from "../atoms/Input";
 import FormActions from "../atoms/FormActions";
-import { BaseSyntheticEvent, SetStateAction } from "react";
 import Customer from "../../models/customer";
 import styles from "./customerForm.module.css";
-import concatClassNames from "../../utils/concatClassNames";
 
 interface Props {
   customer: Customer;

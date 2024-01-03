@@ -1,0 +1,13 @@
+div.curtain {
+  position: fixed;
+  background: var(--color-contrast);
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  transition: 0.5s;
+
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -3,17 +3,20 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import styles from "./customerForm.module.css";
 import CustomerForm from "./CustomerForm";
 import Customer from "../../models/customer";
+import { MemoryRouter } from "react-router-dom";
 
 describe("components", () => {
   describe("organisms", () => {
     describe("CustomerForm", () => {
       test("should render when is create customer flow", () => {
         const { container } = render(
-          <CustomerForm
-            customer={{} as Customer}
-            setCustomer={vi.fn()}
-            onSubmit={vi.fn()}
-          />
+          <MemoryRouter>
+            <CustomerForm
+              customer={{} as Customer}
+              setCustomer={vi.fn()}
+              onSubmit={vi.fn()}
+            />
+          </MemoryRouter>
         );
 
         expect(container).toBeDefined();
@@ -23,11 +26,13 @@ describe("components", () => {
 
       test("should update fields when input new values", async () => {
         const { container } = render(
-          <CustomerForm
-            customer={{} as Customer}
-            setCustomer={vi.fn()}
-            onSubmit={vi.fn()}
-          />
+          <MemoryRouter>
+            <CustomerForm
+              customer={{} as Customer}
+              setCustomer={vi.fn()}
+              onSubmit={vi.fn()}
+            />
+          </MemoryRouter>
         );
 
         const inputName = container.querySelector(
@@ -49,11 +54,13 @@ describe("components", () => {
       test("should call formOnSubmit when click on submit form", async () => {
         const onSubmitMock = vi.fn();
         const { container } = render(
-          <CustomerForm
-            customer={{} as Customer}
-            setCustomer={vi.fn()}
-            onSubmit={onSubmitMock}
-          />
+          <MemoryRouter>
+            <CustomerForm
+              customer={{} as Customer}
+              setCustomer={vi.fn()}
+              onSubmit={onSubmitMock}
+            />
+          </MemoryRouter>
         );
 
         const submit = container.querySelector(
@@ -63,6 +70,25 @@ describe("components", () => {
         fireEvent.submit(submit);
         await waitFor(() => {
           expect(onSubmitMock).toHaveBeenCalledOnce();
+        });
+      });
+
+      test("should call deleteOnClick when click on Remover", async () => {
+        const deleteOnClickMock = vi.fn();
+        render(
+          <MemoryRouter>
+            <CustomerForm
+              customer={{} as Customer}
+              setCustomer={vi.fn()}
+              onSubmit={vi.fn()}
+              deleteOnClick={deleteOnClickMock}
+            />
+          </MemoryRouter>
+        );
+
+        fireEvent.click(screen.getByText("Remover"));
+        await waitFor(() => {
+          expect(deleteOnClickMock).toHaveBeenCalledOnce();
         });
       });
     });

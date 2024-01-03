@@ -5,7 +5,7 @@ import Button from "../../components/atoms/Button";
 import SectionBox from "../../components/atoms/SectionBox";
 import Layout from "../../components/templates/Layout";
 import { getCustomers } from "../../integrations/customers";
-import { ToastBox, getToast } from "../../components/atoms/Toast";
+import { ToastBox, getToast } from "../../components/molecules/Toast";
 import styles from "./customers.module.css";
 
 export default function Customers() {

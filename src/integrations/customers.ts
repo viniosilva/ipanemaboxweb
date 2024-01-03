@@ -4,12 +4,12 @@ const customers: Customer[] = [
   {
     id: 1,
     name: "Mimoso",
-    email: "mimo@email.com",
+    email: "mimo@cat.com",
   },
   {
     id: 2,
     name: "Lola",
-    email: "lola@email.com",
+    email: "lola@cat.com",
   },
 ];
 
