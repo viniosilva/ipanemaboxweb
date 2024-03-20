@@ -1,0 +1,50 @@
+nav.container {
+  top: var(--menu-height);
+  left: 0;
+  position: fixed;
+  background-color: #fcfcfc;
+  width: 12rem; /* 192 + 24 + 24 = 240 */
+  height: 100%;
+  padding: var(--space-16) var(--space-24);
+  transition: 0.25s linear;
+
+  & > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: min-content;
+    width: 100%;
+
+    & > li {
+      padding: var(--space-8) var(--space-16);
+
+      & > a {
+        display: flex;
+        column-gap: var(--space-8);
+
+        & > svg {
+          color: #c2c4c5;
+        }
+
+        & > span {
+          color: #343a40;
+        }
+      }
+
+      &:hover {
+        background-color: #caffcd;
+        border-radius: var(--space-4);
+
+        & > a {
+          & > svg {
+            color: #97a5ae;
+          }
+        }
+      }
+    }
+  }
+
+  &.hiddenMenu {
+    left: -15rem;
+  }
+}

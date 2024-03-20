@@ -1,9 +1,60 @@
+@font-face {
+  font-family: "balloon-regular";
+  src: url("assets/fonts/balloon_regular/balloon_regular.ttf")
+    format("truetype");
+}
+
 :root {
   color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+    helvetica neue, Arial, noto sans, sans-serif, apple color emoji,
+    segoe ui emoji, segoe ui symbol, noto color emoji;
+
+  color: var(--color-text);
+
+  --color-light: #ffffff;
+  --color-dark: #000000;
+  --color-background: #f5f7f8;
+  --color-primary: #006400;
+  --color-primary-hover: #005400;
+  --color-secundary: #34ca3c;
+  --color-line: #e2e6ef;
+  --color-text: #343a40;
+  --color-icon: #c2c4c5;
+
+  --space-4: 0.25rem; /* 4px */
+  --space-8: 0.5rem; /* 8px */
+  --space-16: 1rem; /* 16px */
+  --space-24: 1.5rem; /* 24px */
+
+  --padding-content: var(--space-16);
+  --box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03),
+    0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03),
+    0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05),
+    0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+  --min-width: 320px;
+
+  --menu-height: 3.5rem; /* 56px */
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+    helvetica neue, Arial, noto sans, sans-serif, apple color emoji,
+    segoe ui emoji, segoe ui symbol, noto color emoji;
 }
 
 body {
   margin: 0;
   display: flex;
   min-height: 100vh;
+  background-color: var(--color-background);
+}
+
+a {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+
+svg {
+  color: var(--color-icon);
 }

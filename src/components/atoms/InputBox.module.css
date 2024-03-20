@@ -1,0 +1,20 @@
+div.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+
+    & > input,
+    & > textarea,
+    & > select {
+        padding: var(--space-8);
+        border-radius: var(--space-4);
+        border: 1px solid #ced4da;
+        transition: 0.25s;
+
+        &:focus {
+            outline: none;
+            border-color: var(--color-secundary);
+            box-shadow: 0 0 0 0.2rem rgba(52,202,60,.25);
+        }
+    }
+}

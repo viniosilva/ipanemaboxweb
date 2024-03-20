@@ -1,0 +1,52 @@
+div.container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.25s linear;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+    top: 128px;
+  }
+
+  & > .content {
+    margin: 0 var(--space-24);
+    max-width: 40rem;
+
+    & > header {
+      display: flex;
+      justify-content: space-between;
+      border-radius: var(--space-4);
+      background-color: #f8f9fa;
+
+      & > h1 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+
+      & > .close {
+        cursor: pointer;
+        transition: 0.25s;
+
+        &:hover {
+          color: #97a5ae;
+        }
+      }
+    }
+
+    & > footer {
+      display: flex;
+      justify-content: flex-end;
+      column-gap: var(--space-16);
+      border-radius: var(--space-4);
+      background-color: #f8f9fa;
+    }
+  }
+}

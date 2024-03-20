@@ -1,0 +1,4 @@
+div.container {
+  padding: var(--padding-content);
+  overflow-x: auto;
+}

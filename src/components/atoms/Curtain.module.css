@@ -1,0 +1,15 @@
+div.container {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  transition: 0.25s linear;
+
+  &.show {
+    visibility: visible;
+    opacity: 0.5;
+    background-color: #000000;
+  }
+}

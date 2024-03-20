@@ -1,0 +1,42 @@
+:root {
+  --menuIconWidth: var(--space-24);
+
+  /* 24 + 16 + 16 (width + padding left and right) */
+  --menu-height: -3.5rem; /* -56px */
+  --titleWidhtFix: -3.5rem; /* -56px */
+}
+
+header.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--color-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  min-width: var(--min-width);
+  height: var(--menu-height);
+  box-shadow: var(--box-shadow);
+  z-index: 1;
+
+  & > svg.menuIcon {
+    width: var(--menuIconWidth);
+    padding: var(--space-16) var(--space-24);
+    transform: scale(1.4, 1);
+    cursor: pointer;
+    color: var(--color-primary);
+  }
+
+  & > h1 {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+    & > img {
+      width: 14rem;
+      margin-left: var(--titleWidhtFix);
+    }
+  }
+}

@@ -34,3 +34,7 @@ npm test
 
 Copyright © 2024 [Vinícius Silva](https://github.com/viniosilva/).<br />
 This project is [MIT](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE) licensed.
+
+## Reference
+
+[ArchitectUI](https://demo.dashboardpack.com/architectui-html-pro/index.html)

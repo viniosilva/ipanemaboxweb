@@ -1,0 +1,9 @@
+div.container {
+    width: 100vw;
+    margin-top: var(--menu-height);
+
+    & > main {
+        display: flex;
+        padding: var(--space-24)
+    }
+}
