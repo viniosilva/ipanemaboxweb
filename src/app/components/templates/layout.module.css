@@ -1,0 +1,19 @@
+@tailwind components;
+
+.overlay {
+  @apply fixed inset-0 z-10 duration-300 opacity-0 invisible;
+}
+
+.overlay.active {
+  @apply bg-black opacity-50 visible;
+}
+
+nav.menu {
+  @apply fixed inset-y-0 left-0 w-32 pt-10 bg-white duration-300 z-20;
+
+  @media (min-width: 640px) {
+    & {
+      @apply relative border-r border-gray-300 translate-x-0;
+    }
+  }
+}
