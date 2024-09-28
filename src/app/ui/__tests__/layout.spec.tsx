@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from "@testing-library/react";
-import Layout from "@/app/components/templates/layout";
+import Layout from "@/app/ui/layout";
 
 describe("Layout Component", () => {
   it("renders header with correct title", () => {

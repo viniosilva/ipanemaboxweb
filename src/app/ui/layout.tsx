@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import styles from "@/app/components/templates/layout.module.css";
+import styles from "@/app/ui/layout.module.css";
+import Link from "next/link";
 
 export default function Layout({
   children,
@@ -37,22 +38,20 @@ export default function Layout({
         >
           <ul>
             <li className="align-middle leading-10 pl-8 cursor-pointer duration-300 hover:bg-green-400">
-              <a href="#">
+              <Link href="/" onClick={toggleMobileMenu}>
                 Início
-              </a>
+              </Link>
             </li>
             <li className="align-middle leading-10 pl-8 cursor-pointer duration-300 hover:bg-green-400">
-              <a href="#">
+              <Link href="/clientes" onClick={toggleMobileMenu}>
                 Clientes
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Main */}
-        <main className="flex-1 p-4 bg-gray-50">
-          <div className="p-4 bg-white border border-gray-300 rounded-lg">{children}</div>
-        </main>
+        {/* Children */}
+        <div className="flex-1 p-4 bg-gray-50">{children}</div>
       </div>
 
       {/* Footer */}
