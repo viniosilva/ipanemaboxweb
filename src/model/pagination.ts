@@ -1,6 +1,6 @@
 export default interface Metadata {
-  total_count: Number;
-  total_pages: Number;
-  current_page: Number;
-  page_size: Number;
+  total_count: number;
+  total_pages: number;
+  current_page: number;
+  page_size: number;
 }

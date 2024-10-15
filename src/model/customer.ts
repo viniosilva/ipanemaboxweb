@@ -1,8 +1,8 @@
 import Metadata from "./pagination";
 
 export interface Customer {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
 }
 
 export interface CustomersListResponse {

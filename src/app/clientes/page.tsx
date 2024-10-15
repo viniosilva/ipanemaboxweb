@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   TableContainer,
   Paper,
@@ -9,24 +9,46 @@ import {
   TableCell,
   TableBody,
   CircularProgress,
+  TableFooter,
+  Pagination,
 } from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from 'next/navigation'
 import { CustomersListResponse } from "@/model/customer";
 import { getCustomersList } from "@/api/ipanemaboxapi";
 
-const fetchCustomersList = async (): Promise<CustomersListResponse> => {
-  return getCustomersList();
+const fetchCustomersList = async (page: number, limit: number): Promise<CustomersListResponse> => {
+  return getCustomersList(page, limit);
 };
 
 export default function CustomersList() {
+  const defaultLimit = 10;
+  const router = useRouter()
+  const params = useSearchParams();
+  const [page, setPage] = useState<number>(Number(params.get("page") || 1));
+  const [limit] = useState<number>(Number(params.get("limit") || defaultLimit));
+
   const {
     data: res,
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["customersList"],
-    queryFn: fetchCustomersList,
+    queryKey: ["customersList", page, limit],
+    queryFn: () => fetchCustomersList(page, limit),
+    placeholderData: keepPreviousData,
   });
+
+  async function handlePaginationOnChange(
+    event: React.ChangeEvent<unknown>,
+    newPage: number,
+  ) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("page", newPage.toString());
+    url.searchParams.set("limit", limit.toString());
+    router.replace(url.toString());
+
+    setPage(newPage);
+  };
 
   if (isLoading) {
     return (
@@ -37,7 +59,7 @@ export default function CustomersList() {
   }
 
   if (error) {
-    return <div>Error loading customers: {error.message}</div>;
+    return <div>Ocorreu um erro ao buscar os clientes: {error.message}</div>;
   }
 
   return (
@@ -63,10 +85,17 @@ export default function CustomersList() {
             ))}
           </TableBody>
           <TableFooter>
-            <Stack spacing={2}>
-              <Pagination count={10} shape="rounded" />
-              <Pagination count={10} variant="outlined" shape="rounded" />
-            </Stack>
+            {(res?.metadata?.total_pages || 1) > 1 && <tr>
+              <td colSpan={1}>
+                <Pagination
+                  className="flex justify-center py-2"
+                  shape="rounded"
+                  count={res?.metadata?.total_pages || defaultLimit}
+                  page={res?.metadata?.current_page || 1}
+                  onChange={handlePaginationOnChange}
+                />
+              </td>
+            </tr>}
           </TableFooter>
         </Table>
       </TableContainer>
